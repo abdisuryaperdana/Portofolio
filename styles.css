@@ -5,6 +5,8 @@
 body {
     font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
+    padding: 0;
+    overflow-x: hidden;
     background: linear-gradient(180deg, #c4ddf9 0%, #fff 56.72%);
     background-size: cover;
     background-repeat: no-repeat;
@@ -18,39 +20,92 @@ body {
 }
 
 nav {
-    width: 100%;
-    background: transparent;
-    padding: 20px 0;
-    position: absolute;
-    top: 0;
     display: flex;
-    justify-content: center;
+    align-items: left;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: relative;
 }
 
 nav ul {
-    list-style: none;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin: 0;
-    padding: 10px 20px;
-    background: #fff;
-    border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: #274081;
-    padding: 5px 20px;
-    transition: background-color 0.3s ease;
-    font-family: 'Istok Web', sans-serif;
-    font-size: 1.1em;
+    font-size: 18px;
+    padding: 10px;
+    transition: color 0.3s ease;
 }
 
+nav ul li a:hover {
+    color: #1e90ff;
+}
+
+/* Tombol hamburger */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    margin-left: -220px;
+    margin-top: 5px;
+}
+
+.hamburger div {
+    width: 100%;
+    height: 4px;
+    background: #274081;
+    border-radius: 2px;
+}
+
+/* Media query untuk tampilan mobile */
+@media screen and (max-width: 768px) {
+    nav {
+        justify-content: flex-start;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 400%;
+        flex-direction: column;
+        background: #fff;
+        padding: 10px 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+        text-align: left;
+        margin-left: -200px;
+        margin-top: -5px;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+
 header {
-    padding-top: 200px;
+    padding-top: 150px;
     text-align: center;
 }
 
@@ -68,6 +123,7 @@ header p {
     font-size: 1.2em;
     color: #274081;
     font-family: 'Istok Web', sans-serif;
+    margin-top: 20px;
 }
 
 .social-icons {
@@ -90,10 +146,18 @@ header p {
 
 .profile-content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 20px;
+    flex-direction: row; /* Mengubah menjadi baris */
+    align-items: center; /* Menyelaraskan secara vertikal */
+    justify-content: center; /* Menjaga jarak antar elemen */
+    gap: 20px; /* Memberikan jarak antara teks dan gambar */
+    margin-top: 150px;
+    margin: 50px;
+}
+
+.profile-text {
+    flex: 1; /* Memberi ruang fleksibel pada teks */
+    padding-right: 20px; /* Memberikan jarak antara teks dan gambar */
+    text-align: left; /* Menjaga agar teks di kiri */
 }
 
 .profile-text h2 {
@@ -105,12 +169,48 @@ header p {
 .profile-text p {
     font-size: 1.2rem;
     color: #666;
+    font-family: 'Istok Web', sans-serif;
+}
+.profile-image {
+    position: relative;
+    flex: 1; /* Membuat gambar fleksibel */
+    display: flex;
+    justify-content: center; /* Membuat gambar berada di sebelah kanan */
+    align-items: center;
+    width: 200px; /* Atur ukuran sesuai kebutuhan */
+    height: 400px; /* Atur ukuran sesuai kebutuhan */
+    border-radius: 10px;
+    margin-top: 50px;
+    overflow: hidden; /* Menghindari gambar meluap keluar dari kontainer */
 }
 
-.profile-image img {
-    max-width: 80%;
+.profile-image .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
     border-radius: 10px;
 }
+
+.profile-image .img-01 {
+    opacity: 1; /* Gambar pertama akan terlihat */
+}
+
+.profile-image .img-02 {
+    opacity: 0; /* Gambar kedua tersembunyi secara default */
+}
+
+.profile-image:hover .img-01 {
+    opacity: 0; /* Sembunyikan gambar pertama saat hover */
+}
+
+.profile-image:hover .img-02 {
+    opacity: 1; /* Tampilkan gambar kedua saat hover */
+}
+
 
 .projects {
     text-align: center;
@@ -175,11 +275,13 @@ header p {
 .experience {
     padding: 50px 20px;
     text-align: center;
+    background-color: #f8f9fa;
 }
 
 .experience h2 {
     margin-bottom: 20px;
     font-size: 2em;
+    color: #333;
 }
 
 .experience-card {
@@ -191,7 +293,67 @@ header p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border: 2px solid #a9cbff;
     text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Header di dalam kartu */
+.experience-card .header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Logo perusahaan */
+.experience-card .logo {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+/* Detail pekerjaan */
+.experience-card .details {
+    flex: 1;
+}
+
+.experience-card .details h2 {
+    font-size: 1.5em;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.experience-card .details p {
+    font-size: 1em;
+    color: #555;
+    margin: 2px 0;
+}
+
+/* Daftar tanggung jawab */
+.experience-card .responsibilities {
+    margin-top: 10px;
+}
+
+.experience-card .responsibilities h3 {
+    font-size: 1.2em;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.experience-card .responsibilities ul {
+    padding-left: 20px;
+}
+
+.experience-card .responsibilities li {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
 
 .contact {
     padding: 50px 20px;
@@ -237,6 +399,191 @@ header p {
     }
 
     .experience-card {
-        padding: 30px;
+        padding: 15px;
+    }
+
+    .experience-card .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .experience-card .logo {
+        margin-top: 10px;
+        width: 100px;
+        height: auto;
+    }
+    .profile-content {
+        display: flex;
+        flex-direction: row; /* Mengubah menjadi baris */
+        align-items: center; /* Menyelaraskan secara vertikal */
+        justify-content: center; /* Menjaga jarak antar elemen */
+        margin-left: 150px;
+        margin-top: -150px;
+        margin-bottom: -150px;
+    }
+    .profile-text {
+        flex: 1; /* Memberi ruang fleksibel pada teks */
+        padding-right: 10px; /* Memberikan jarak antara teks dan gambar */
+        text-align: left; /* Menjaga agar teks di kiri */
+    }
+    
+    .profile-text h2 {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .profile-text p {
+        font-size: 0.8rem;
+        color: #666;
+        font-family: 'Istok Web', sans-serif;
+    }
+    .profile-image {
+        position: relative;
+        flex: 1; /* Membuat gambar fleksibel */
+        display: flex;
+        justify-content: center; /* Membuat gambar berada di sebelah kanan */
+        align-items: center;
+        width: 400px; /* Atur ukuran sesuai kebutuhan */
+        height: 400px; /* Atur ukuran sesuai kebutuhan */
+        border-radius: 5px;
+        margin-top: 180px;
+        overflow: hidden; /* Menghindari gambar meluap keluar dari kontainer */
+    }
+    
+    .profile-image .img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 50%;
+        object-fit: cover;
+        transition: opacity 0.3s ease;
+        border-radius: 10px;
+    }
+    .projects {
+        text-align: center;
+        margin-top: 50px;
+    }
+    
+    .projects h1 {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+    
+    .projects p {
+        color: #666;
+        font-size: 0.6em;
+        margin-bottom: 50px;
+    }
+    
+    .project-cards {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .project-card {
+        background: #fff;
+        border-radius: px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 100%;
+        max-width: 350px;
+        text-align: left;
+        transition: transform 0.3s;
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .project-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .project-card img {
+        width: 100%;
+        height: auto;
+        transition: all 0.3s ease;
+    }
+    
+    .project-info {
+        padding: 15px;
+    }
+    
+    .project-info h2 {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+    
+    .project-info p {
+        color: #333;
+        margin: 5px 0;
+    }
+    .social-icons {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    .social-icons a img {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+    
+    .social-icons a img:hover {
+        transform: scale(1.1);
+    }
+    header {
+        padding-top: 10px;
+        text-align: center;
+    }
+    
+    header h1 {
+        font-size: 2.7em;
+        color: #274081;
+    }
+    
+    header h2 {
+        font-size: 4em;
+        color: #4A89E7;
+    }
+    
+    header p {
+        font-size: 1em;
+        color: #274081;
+        font-family: 'Istok Web', sans-serif;
+        margin-top: 70px;
+        margin: 10px;
+    }
+    .experience-card .responsibilities {
+        margin-top: 10px;
+    }
+    
+    .experience-card .responsibilities h3 {
+        font-size: 1em;
+        color: #444;
+        margin-bottom: 5px;
+    }
+    
+    .experience-card .responsibilities ul {
+        padding-left: 20px;
+    }
+    
+    .experience-card .responsibilities li {
+        font-size: 0.8em;
+        color: #666;
+        margin-bottom: 5px;
+    }
+    .experience-card .details h2 {
+        font-size: 1em;
+    }
+    .experience-card .details p {
+        font-size: 0.8em;
     }
 }
