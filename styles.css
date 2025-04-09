@@ -122,7 +122,7 @@ header {
 }
 
 header h1 {
-    font-size: 5em;
+    font-size: 3em;
     color: #274081;
 }
 
@@ -132,7 +132,7 @@ header h2 {
 }
 
 header p {
-    font-size: 1.9em;
+    font-size: 1,9em;
     color: #274081;
     font-family: 'Istok Web', sans-serif;
     margin-top: 20px;
@@ -443,18 +443,21 @@ img {
         flex: 1; /* Memberi ruang fleksibel pada teks */
         padding-right: 10px; /* Memberikan jarak antara teks dan gambar */
         text-align: left; /* Menjaga agar teks di kiri */
+        margin-left: 7px;
     }
     
     .profile-text h2 {
         font-size: 1rem;
         color: #333;
         margin-bottom: 10px;
+        margin-left: 7px;
     }
     
     .profile-text p {
         font-size: 0.8rem;
         color: #666;
         font-family: 'Istok Web', sans-serif;
+        margin-left: 7px;
     }
     .profile-image {
         position: relative;
@@ -485,13 +488,13 @@ img {
     }
     
     .projects h1 {
-        font-size: 0.5em;
+        font-size: 1em;
         margin-bottom: 10px;
     }
     
     .projects p {
         color: #666;
-        font-size: 0.6em;
+        font-size: 1.5em;
         margin-bottom: 50px;
     }
     
@@ -563,7 +566,7 @@ img {
     }
     
     header h1 {
-        font-size: 3em;
+        font-size: 1em;
         color: #274081;
     }
     
@@ -573,7 +576,7 @@ img {
     }
     
     header p {
-        font-size: 2em;
+        font-size: 1em;
         color: #274081;
         font-family: 'Istok Web', sans-serif;
         margin-top: 70px;
