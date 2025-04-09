@@ -174,7 +174,7 @@ img {
 
 .profile-text {
     flex: 1; /* Memberi ruang fleksibel pada teks */
-    padding-right: 20px; /* Memberikan jarak antara teks dan gambar */
+    padding-right: 10px; /* Memberikan jarak antara teks dan gambar */
     text-align: left; /* Menjaga agar teks di kiri */
     margin-left: 10px;
 }
