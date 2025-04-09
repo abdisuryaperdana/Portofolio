@@ -205,6 +205,8 @@ img {
     border-radius: 10px;
     margin-top: 50px;
     overflow: hidden; /* Menghindari gambar meluap keluar dari kontainer */
+    margin-right: 10px;
+    padding-right: 10px;
 }
 
 .profile-image .img {
@@ -475,6 +477,7 @@ img {
         border-radius: 5px;
         margin-top: 180px;
         overflow: hidden; /* Menghindari gambar meluap keluar dari kontainer */
+        margin-right: 7px;
     }
     
     .profile-image .img {
@@ -576,7 +579,7 @@ img {
     }
     
     header h2 {
-        font-size: 4em;
+        font-size: 2em;
         color: #4A89E7;
     }
     
